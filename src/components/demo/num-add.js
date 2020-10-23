@@ -6,10 +6,9 @@ class NumAdd extends React.Component {
         this.state = {
             num: 0
         }
-        // 为了在回调中使用 `this`，这个绑定是必不可少的
-        this.leftClick = this.leftClick.bind(this);
-        this.rightClick = this.rightClick.bind(this);
+        //this.leftClick = this.leftClick.bind(this); 如果绑定的函数不是箭头函数的话
     }
+
     render() {
         return (
             <div className="num-add">
@@ -19,16 +18,14 @@ class NumAdd extends React.Component {
             </div>
         );
     }
-    leftClick(e) {
+
+    leftClick = (e) => {
         // e 是react合成事件，e.preventDefault() 阻止默认行为，无兼容问题
-        this.setState(state => ({
-            num: state.num - 1
-        }));
+        this.setState({num: this.state.num - 1});
     }
-    rightClick() {
-        this.setState(state => ({
-            num: state.num + 1
-        }));
+
+    rightClick = () => {
+        this.setState({num: this.state.num + 1});
     }
 }
 
