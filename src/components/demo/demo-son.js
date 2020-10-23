@@ -7,7 +7,9 @@ class DemoSon extends React.Component {
         console.log(props.name);
         this.state = {
             hua: '❀',
-            xin: '❤'
+            xin: '❤',
+            showXin: true,
+            ifReader: true
         };
     }
 
@@ -18,8 +20,16 @@ class DemoSon extends React.Component {
 
     render() {
         console.log('子3-render')
+        //隐藏组件 render null ，但不会影响组件的生命周期
+        if (!this.state.ifReader) {
+            return null;
+        }
         return (
-            <div>子组件{this.state.hua}</div>
+            <div>
+                <div>子组件{this.state.hua}</div>
+                {this.state.showXin && <div>{this.state.xin}</div>}
+                {this.state.showXin ? <div>{this.state.xin}</div> : <div>2</div>}
+            </div>
         );
     }
 
