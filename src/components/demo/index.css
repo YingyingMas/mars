@@ -2,7 +2,11 @@
 .demo-p {
     border: 2px solid rgba(124, 121, 121, .4);
 }
-
+.demo-p .tem {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid rgba(124, 121, 121, .6);
+}
 .demo-son {
     border: 2px solid rgba(124, 121, 121, .4);
     margin: 30px;

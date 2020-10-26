@@ -1,6 +1,7 @@
 // 计时器二：
 import React from "react";
 import DemoSon from "./demo-son";
+import TemperatureInput from './temperature'
 
 class Clock extends React.Component {
     // constructor构造函数：
@@ -16,7 +17,7 @@ class Clock extends React.Component {
         this.state = {
             date: new Date(),
             hua: '❀',
-            xin: '❤'
+            xin: '❤',
         };
     }
 
@@ -32,8 +33,13 @@ class Clock extends React.Component {
         return (
             <div className="demo-p">
                 <div>父组件</div>
-                <div>{this.state.date.toLocaleTimeString()}.</div>
+                <div>{this.state.date.toLocaleTimeString()}</div>
                 <div>{this.state.xin}</div>
+                <div className="tem">
+                    <div>此处引用了TemperatureInput组件</div>
+                    <TemperatureInput name="摄氏"></TemperatureInput>
+                    <TemperatureInput name="华氏"></TemperatureInput>
+                </div>
                 <DemoSon name="myy"></DemoSon>
             </div>
         );

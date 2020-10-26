@@ -40,43 +40,45 @@ class NameForm extends React.Component {
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <div>受控组件</div>
                 <div className="box">
-                    input:
+                    <div>受控组件</div>
+                    <div>
+                        input:
                     <input type="text" name="iptValue" value={this.state.iptValue} onChange={this.handleChange} />
-                </div>
-                <div className="box">
-                    input指定value值(除undefined/null)会阻止用户更改输入：
-                    <input value="1"/>
-                </div>
-                <div className="box">
-                    select:
+                    </div>
+                    <div>
+                        input指定value值(除undefined/null)会阻止用户更改输入：
+                    <input value="1" onChange={this.handleChange} />
+                    </div>
+                    <div>
+                        select:
                     <select name="selValue" value={this.state.selValue} onChange={this.handleChange}>
-                        <option value="grapefruit">葡萄柚</option>
-                        <option value="lime">酸橙</option>
-                        <option value="coconut">椰子</option>
-                        <option value="mango">芒果</option>
-                    </select>
-                </div>
-                <div className="box">
-                    multiple-select:
+                            <option value="grapefruit">葡萄柚</option>
+                            <option value="lime">酸橙</option>
+                            <option value="coconut">椰子</option>
+                            <option value="mango">芒果</option>
+                        </select>
+                    </div>
+                    <div>
+                        multiple-select:
                     <select name="mulSelValue" multiple={true} value={this.state.mulSelValue} onChange={this.handleChange}>
-                        <option value="grapefruit">葡萄柚</option>
-                        <option value="lime">酸橙</option>
-                        <option value="coconut">椰子</option>
-                        <option value="mango">芒果</option>
-                    </select>
+                            <option value="grapefruit">葡萄柚</option>
+                            <option value="lime">酸橙</option>
+                            <option value="coconut">椰子</option>
+                            <option value="mango">芒果</option>
+                        </select>
+                    </div>
+
+                    <div className="title">非受控组件：value 只读</div>
+
+                    <div>
+                        <input type="file" />
+                    </div>
+                    <div>
+                        <input type="submit" value="提交" />
+                    </div>
                 </div>
 
-                <div className="title">非受控组件：value 只读</div>
-
-                <div className="box">
-                    <input type="file" />
-                </div>
-                <div className="box">
-                    <input type="submit" value="提交" />
-                </div>
-                
             </form>
         );
     }
