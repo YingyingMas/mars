@@ -12,7 +12,7 @@ class Clock extends React.Component {
         console.log('父1-constructor')
         // 最先调用
         super(props);
-        //初始化state
+        //初始化stateƒ
         this.state = {
             date: new Date(),
             hua: '❀',
@@ -30,10 +30,11 @@ class Clock extends React.Component {
     render() {
         console.log('父3-render')
         return (
-            <div>
-                <DemoSon name="myy"></DemoSon>
-                <div>It is {this.state.date.toLocaleTimeString()}.</div>
+            <div className="demo-p">
+                <div>父组件</div>
+                <div>{this.state.date.toLocaleTimeString()}.</div>
                 <div>{this.state.xin}</div>
+                <DemoSon name="myy"></DemoSon>
             </div>
         );
     }

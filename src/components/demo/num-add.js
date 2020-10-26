@@ -12,6 +12,7 @@ class NumAdd extends React.Component {
     render() {
         return (
             <div className="num-add">
+                <div>加减demo</div>
                 <span className="left" onClick={this.leftClick}>-</span>
                 <span className="num">{this.state.num}</span>
                 <span className="right" onClick={this.rightClick}>+</span>
