@@ -32,3 +32,9 @@
     line-height: 30px;
     text-align: center;
 }
+.reverse-data-flow {
+    width: 300px;
+    margin: 30px auto;
+    padding: 20px;
+    border: 1px solid rgba(124, 121, 121, .6);
+}
