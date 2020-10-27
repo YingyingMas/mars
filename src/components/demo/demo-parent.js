@@ -18,6 +18,8 @@ class Clock extends React.Component {
             date: new Date(),
             hua: '❀',
             xin: '❤',
+            scale: 'c',
+            temperature: ''
         };
     }
 
@@ -28,8 +30,42 @@ class Clock extends React.Component {
         return true;
     }
 
+    handleCelsiusChange = (temperature) => {
+        this.setState({ scale: 'c', temperature });
+    }
+
+    handleFahrenheitChange = (temperature) => {
+        this.setState({ scale: 'f', temperature });
+    }
+
     render() {
         console.log('父3-render')
+
+        function toCelsius(fahrenheit) {
+            return (fahrenheit - 32) * 5 / 9;
+        }
+        function toFahrenheit(celsius) {
+            return (celsius * 9 / 5) + 32;
+        }
+        function tryConvert(temperature, convert) {
+            const input = parseFloat(temperature);
+            if (Number.isNaN(input)) {
+                return '';
+            }
+            const output = convert(input);
+            const rounded = Math.round(output * 1000) / 1000;
+            return rounded.toString();
+        }
+        const scale = this.state.scale;
+        const temperature = this.state.temperature;
+        const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
+        const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
+        // 在 React 中，任何可变数据应当只有唯一“数据源”
+        // state 都是首先添加到需要渲染数据的组件中去
+        // 如果其他组件也需要这个 state，可以将它提升至这些组件的最近共同父组件中
+        // 应当依靠自上而下的数据流，而不是尝试在不同组件间同步 state
+        // “存在”于组件中的任何 state，仅有组件自己能够修改它
+        // 某些数据由 props 或 state 推导得出，那么它就不应该存在于 state 中
         return (
             <div className="demo-p">
                 <div>父组件</div>
@@ -37,8 +73,14 @@ class Clock extends React.Component {
                 <div>{this.state.xin}</div>
                 <div className="tem">
                     <div>此处引用了TemperatureInput组件</div>
-                    <TemperatureInput name="摄氏"></TemperatureInput>
-                    <TemperatureInput name="华氏"></TemperatureInput>
+                    <TemperatureInput
+                        scale="c"
+                        temperature={celsius}
+                        onTemperatureChange={this.handleCelsiusChange} />
+                    <TemperatureInput
+                        scale="f"
+                        temperature={fahrenheit}
+                        onTemperatureChange={this.handleFahrenheitChange} />
                 </div>
                 <DemoSon name="myy"></DemoSon>
             </div>
