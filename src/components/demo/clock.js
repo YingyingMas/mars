@@ -1,8 +1,9 @@
-// 计时器二：
-import React from "react";
-import DemoSon from "./demo-son";
-import TemperatureInput from './temperature'
+// 计时器-第二版：以此上路，看一下组件生命周期、state、props、父子组件、条件判断等
 
+import React from "react";
+import ClockSon from "./clock-son";
+
+// class 组件
 class Clock extends React.Component {
     // constructor构造函数：
     // 1.通过给 this.state 赋值对象来初始化内部 state
@@ -13,7 +14,7 @@ class Clock extends React.Component {
         console.log('父1-constructor')
         // 最先调用
         super(props);
-        //初始化stateƒ
+        //初始化state
         this.state = {
             date: new Date(),
             hua: '❀',
@@ -30,69 +31,18 @@ class Clock extends React.Component {
         return true;
     }
 
-    handleCelsiusChange = (temperature) => {
-        this.setState({ scale: 'c', temperature });
-    }
-
-    handleFahrenheitChange = (temperature) => {
-        this.setState({ scale: 'f', temperature });
-    }
-
     render() {
         console.log('父3-render')
-
-        function toCelsius(fahrenheit) {
-            return (fahrenheit - 32) * 5 / 9;
-        }
-        function toFahrenheit(celsius) {
-            return (celsius * 9 / 5) + 32;
-        }
-        function tryConvert(temperature, convert) {
-            const input = parseFloat(temperature);
-            if (Number.isNaN(input)) {
-                return '';
-            }
-            const output = convert(input);
-            const rounded = Math.round(output * 1000) / 1000;
-            return rounded.toString();
-        }
-        const scale = this.state.scale;
-        const temperature = this.state.temperature;
-        const celsius = scale === 'f' ? tryConvert(temperature, toCelsius) : temperature;
-        const fahrenheit = scale === 'c' ? tryConvert(temperature, toFahrenheit) : temperature;
-        // 在 React 中，任何可变数据应当只有唯一“数据源”
-        // state 都是首先添加到需要渲染数据的组件中去
-        // 如果其他组件也需要这个 state，可以将它提升至这些组件的最近共同父组件中
-        // 应当依靠自上而下的数据流，而不是尝试在不同组件间同步 state
-        // “存在”于组件中的任何 state，仅有组件自己能够修改它
-
-        // 如何确定state？
-        // 某些数据由 props 或 state 推导得出，那么它不应该 是 state 
-        // 该数据由父组件通过 props 传递而来，那么它不应该是 state。
-        // 该数据随时间的推移保持不变，那么它不应该是 state。
-       
-        // 在哪存放state？
-        // 找到根据这个 state 进行渲染的所有组件。
-        // 找到他们的共同所有者组件（在组件层级上高于所有需要该 state 的组件）。
-        // 该共同所有者组件或者比它层级更高的组件应该拥有该 state。
-        // 若找不到合适的位置存放该 state，可直接建一个新的组件存放该 state，并将这一新组件置于高于共同所有者组件层级的位置。
+        // JXS中的属性值，用引号指定字符串字面量，用{}指定js表达式
+        // JSX中的属性名不使用HTML属性名称，而是以小驼峰方式命名，如下 className（JSX 语法上更接近 JavaScript 而不是 HTML）
+        // JSX本身会被编译为js对象，可以作为参数、返回值、赋值给变量等
         return (
             <div className="demo-p">
                 <div>父组件</div>
                 <div>{this.state.date.toLocaleTimeString()}</div>
                 <div>{this.state.xin}</div>
-                <div className="tem">
-                    <div>此处引用了TemperatureInput组件</div>
-                    <TemperatureInput
-                        scale="c"
-                        temperature={celsius}
-                        onTemperatureChange={this.handleCelsiusChange} />
-                    <TemperatureInput
-                        scale="f"
-                        temperature={fahrenheit}
-                        onTemperatureChange={this.handleFahrenheitChange} />
-                </div>
-                <DemoSon name="myy"></DemoSon>
+                {/*将 JSX 的 attributes 和 children 转换为单个对象(props)传给组件，如下name*/}
+                <ClockSon name="myy"></ClockSon>
             </div>
         );
     }
@@ -207,7 +157,7 @@ export default Clock;
 
 三.在哪些钩子函数内可以调用setState方法，哪些不可以，不可以的话是什么表现。
 
-  constructor 中 只能this.state直接赋值，不可使用 setState()，会报错：demo-parent.js:1406 Warning: Can't call setState on a component that is not yet mounted
+  constructor 中 只能this.state直接赋值，不可使用 setState()，会报错：clock.js:1406 Warning: Can't call setState on a component that is not yet mounted
   componentDidMount 这里调用 setState() 将触发额外渲染，在浏览器更新屏幕之前
   componentDidUpdate 调用 setState()，必须被包裹在一个条件语句里，否则导致死循环
   componentWillUnmount 中不可 setState()，修改了也不会渲染

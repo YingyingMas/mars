@@ -22,11 +22,11 @@ class NumAdd extends React.Component {
 
     leftClick = (e) => {
         // e 是react合成事件，e.preventDefault() 阻止默认行为，无兼容问题
-        this.setState({num: this.state.num - 1});
+        this.setState({ num: this.state.num - 1 });
     }
 
     rightClick = () => {
-        this.setState({num: this.state.num + 1});
+        this.setState({ num: this.state.num + 1 });
     }
 }
 

@@ -4,10 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+import store from "./store";
+const render = () => ReactDOM.render(<App />, document.getElementById('root'));
+render();
 
+// store.subscribe(render) 设置监听函数，一旦 State 发生变化，就自动执行函数 render
+store.subscribe(render);
 
-// 计时器一：
+// 此处是一个官方demo：计时器-第一版：
+// clock.js 为计时器-第二版
 // function Clock(props) {
 //     return (
 //       <div>
@@ -19,7 +24,7 @@ ReactDOM.render(<App />, document.getElementById('root'));
 // function tick() {
 //     ReactDOM.render(<Clock date={new Date()} />, document.getElementById('root'));
 // }
-  
+
 // setInterval(tick, 1000);
 
 

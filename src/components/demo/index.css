@@ -2,27 +2,18 @@
 .demo-p {
     border: 2px solid rgba(124, 121, 121, .4);
 }
-.demo-p .tem {
-    margin: 20px;
-    padding: 20px;
-    border: 1px solid rgba(124, 121, 121, .6);
-}
 .demo-son {
     border: 2px solid rgba(124, 121, 121, .4);
     margin: 30px;
 }
 .demo-son .box{
-    border: 1px solid rgba(124, 121, 121, .6);
+    border-top: 1px solid rgba(124, 121, 121, .6);
 }
 .demo-son div{
     margin: 10px;
     padding: 10px;
 }
 
-.num-add {
-    margin: 30px;
-    border: 1px solid rgba(124, 121, 121, .6);
-}
 .num-add .left,
 .num-add .right,
 .num-add .num {
@@ -32,9 +23,11 @@
     line-height: 30px;
     text-align: center;
 }
+.num-add,
+.form,
+.tem,
 .reverse-data-flow {
-    width: 300px;
-    margin: 30px auto;
+    margin-top: 20px;
     padding: 20px;
-    border: 1px solid rgba(124, 121, 121, .6);
+    border: 2px solid rgba(124, 121, 121, .4);
 }
