@@ -98,7 +98,7 @@ class Clock extends React.Component {
     // 在渲染阶段调用，不允许出现副作用
     static getDerivedStateFromError(error) {
         console.log('父static getDerivedStateFromError');
-        return { hasError: true };
+        return {hasError: true};
     }
 
     // 在后代组件抛出错误后被调用

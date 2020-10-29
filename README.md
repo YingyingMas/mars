@@ -19,3 +19,5 @@
 - src 下新建 components文件夹，在demo文件夹中写了一些小demo
 - 新建 reducers 文件夹，暂定存放所有reducer文件，具体说明移步相应文件内
 - 新建 store.js,生成全项目 store 容器，具体说明移步相应文件内
+- 到目前为止，以计数器开始，尝试了react的核心概念，redux初级使用，react-redux的使用
+- 计划下一步方向：接口调用-异步数据获取-触发reducer；路由配置
