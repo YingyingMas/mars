@@ -154,7 +154,7 @@ let { subscribe, dispatch, getState } = createStore(chatReducer);
  - 中间件内部可以拿到 getState 和 dispatch
  - 同步操作只要发出一种相应的 Action，执行 reducers就可以
  - 异步操作要发出三种 Action
-   ```js
+  ```js
     // 写法一：名称相同，参数不同
     { type: 'FETCH_POSTS' } // 操作发起时的 Action
     { type: 'FETCH_POSTS', status: 'error', error: 'Oops' } // 操作失败的 Action
@@ -193,7 +193,7 @@ React-Redux将所有组件分成两大类：
  - 如果一个组件既有 UI 又有业务逻辑，要将它拆分成：外面是一个容器组件，里面包了一个 UI 组件。
  - 容器组件负责与外部的通信，将数据传给 UI 组件，由 UI 组件渲染出视图。
  - React-Redux 规定，所有的 UI 组件都由用户提供，容器组件则是由 React-Redux 自动生成。
-   ```js
+  ```js
     import { connect } from 'react-redux'
     const VisibleTodoList = connect(mapStateToProps, mapDispatchToProps)(TodoList)
    
@@ -238,7 +238,7 @@ React-Redux将所有组件分成两大类：
     const mapDispatchToProps2 = {
       onClick: (filter) => {
         type: 'SET_VISIBILITY_FILTER',
-        filter: filter
+        filter
       }
     }
     
@@ -248,11 +248,12 @@ React-Redux将所有组件分成两大类：
     import App from './components/App'
     
     let store = createStore(todoApp);
-    render(
+    /*render(
       <Provider store={store}>
         <App />
       </Provider>,
       document.getElementById('root')
-    )
+    )*/
    
    ```
+[初次使用Provider编译报错，降低了React-Redux版本后解决,7降至4](https://blog.csdn.net/weixin_42331327/article/details/103908207)

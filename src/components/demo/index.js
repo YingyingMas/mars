@@ -8,7 +8,8 @@ import Clock from "./clock";
 
 // 作业 NumAdd，加减计算器
 import NumAdd from "./num-add";
-import NumAddRedux from "./num-add-redux";
+// import NumAddRedux from "./num-add-redux";
+import NumAddReactRedux from "./num-add-react-redux";
 
 // react 中的表单控件
 import Form from "./form"
@@ -18,9 +19,6 @@ import FilterableProductTable from "./reverse-data-flow";
 
 // 官方 demo 摄氏温度与华氏温度转化
 import TwoTemperatures from "./two-temperatureInputs";
-
-// 引入全局 store，改造 NumAdd 为 redux 方式
-import store from "../../store";
 
 // react函数组件：一个函数，接受props对象数据，返回一个react元素
 function Demo(props) {
@@ -45,11 +43,13 @@ function Demo(props) {
                 用户触发action，reduce 立即计算响应的 state
                 用户触发action，异步操作结束后 reduce 计算响应的 state？？----中间件
             */}
-            <NumAddRedux
-                value={store.getState()}
-                onIncrement={() => store.dispatch({ type: 'INCREMENT' })}
-                onDecrement={() => store.dispatch({ type: 'DECREMENT' })}
-            />
+            {/*<NumAddRedux*/}
+            {/*    value={store.getState().count}*/}
+            {/*    onIncrement={() => store.dispatch({ type: 'INCREMENT' })}*/}
+            {/*    onDecrement={() => store.dispatch({ type: 'DECREMENT' })}*/}
+            {/*/>*/}
+
+            <NumAddReactRedux/>
 
             <Form/>
 
